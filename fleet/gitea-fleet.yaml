@@ -44,7 +44,7 @@ spec:
         - name: drone-tracker-web-content
           gitRef:
             path: /kiosk/content/flight-conditions-{{ .metadata.labels.weather }}
-            repository: user-repo
+            repository: git-fleet-example-01
             targetRevision: main
       os:
         image: quay.io/rh-ee-kamirsar/base-bootc:v1
