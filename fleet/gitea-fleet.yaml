@@ -2,15 +2,15 @@ apiVersion: flightctl.io/v1beta1
 kind: Fleet
 metadata:
   labels: {}
-  name: gitea-fleet
+  name: git-fleet-example-01
 spec:
   selector:
     matchLabels:
-      fleet: gitea
+      fleet: git-fleet-example-01
   template:
     metadata:
       labels:
-        fleet: gitea-fleet
+        fleet: git-fleet-example-01
     spec:
       applications:
         - appType: quadlet
