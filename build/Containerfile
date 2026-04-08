@@ -1,0 +1,15 @@
+# Base the image off of the official RHEL 9.6 bootc image
+FROM registry.redhat.io/rhel9-eus/rhel-9.6-bootc:9.6
+
+# Install & Enable the Edge Manager Agent, disable (mask) the image mode update timer
+RUN dnf config-manager --add-repo https://rpm.flightctl.io/flightctl-lab.repo && \
+    dnf clean all && \
+    dnf -y install flightctl-agent && \
+    systemctl enable flightctl-agent.service && \
+    systemctl mask bootc-fetch-apply-updates.timer
+
+# Copy early binding enrollment config.yaml into image
+COPY config.yaml /etc/flightctl/config.yaml
+
+# DO NOT DO THIS IN PRODUCTION ENVIRONMENTS (for lab troubleshooting only)
+RUN echo "root:redhat123" | chpasswd
