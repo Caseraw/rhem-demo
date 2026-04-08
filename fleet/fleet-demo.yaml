@@ -1,0 +1,16 @@
+apiVersion: flightctl.io/v1beta1
+kind: Fleet
+metadata:
+  labels: {}
+  name: gitea-fleet
+spec:
+  selector:
+    matchLabels:
+      fleet: gitea
+  template:
+    metadata:
+      labels:
+        fleet: gitea-fleet
+    spec:
+      applications: []
+      config: []

@@ -1,0 +1,50 @@
+apiVersion: flightctl.io/v1beta1
+kind: Fleet
+metadata:
+  labels: {}
+  name: gitea-fleet
+spec:
+  selector:
+    matchLabels:
+      fleet: gitea
+  template:
+    metadata:
+      labels:
+        fleet: gitea-fleet
+    spec:
+      applications:
+        - appType: quadlet
+          envVars: {}
+          inline:
+            - path: drone-tracker.container
+              content: |-
+                spec:
+                  applications:
+                    - name: drone-tracker-nginx
+                      appType: quadlet
+                      inline:
+                        - path: app.container
+                          content: |
+                            [Container]
+                            Image=docker.io/library/nginx:1.25
+                            Exec=nginx -g "daemon off;"
+                            PublishPort=8080:80
+                            Volume=/etc/drone-tracker:/usr/share/nginx/html:ro,Z
+
+                            [Service]
+                            Restart=on-failure
+                            RestartSec=20
+
+                            [Install]
+                            WantedBy=default.target
+              contentEncoding: plain
+          name: drone-tracker-app
+          volumes: []
+      config:
+        - name: drone-tracker-web-content
+          gitRef:
+            path: /kiosk/content/flight-conditions-{{ .metadata.labels.weather }}
+            repository: user-repo
+            targetRevision: main
+      os:
+        image: quay.io/user/drone-image:v1

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Drone Tracker</title>
+  <link rel="stylesheet" href="styles.css" />
+  <script src="app.js" defer></script>
+</head>
+<body>
+
+  <main class="mission-layout">
+
+    <!-- Header + button, aligned to map width -->
+    <div class="top-bar">
+      <h1>SliceOps Delivery Systems <span style="color:#ee0000;">Drone Tracker</span></h1>
+
+      <a class="btn-primary" href="weather.html">
+        View Flight Conditions
+      </a>
+    </div>
+
+    <!-- Map + drones -->
+    <div class="map-frame">
+      <img
+        src="images/world-map-grid.jpg"
+        alt="World Map"
+        class="world-map"
+      />
+
+      <!-- Drone icons -->
+      <div class="drone d1"></div>
+      <div class="drone d2"></div>
+      <div class="drone d3"></div>
+    </div>
+
+  </main>
+
+</body>
+</html>
