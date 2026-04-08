@@ -47,4 +47,4 @@ spec:
             repository: user-repo
             targetRevision: main
       os:
-        image: quay.io/user/drone-image:v1
+        image: quay.io/rh-ee-kamirsar/base-bootc:v1
