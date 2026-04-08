@@ -2,15 +2,15 @@ apiVersion: flightctl.io/v1beta1
 kind: Fleet
 metadata:
   labels: {}
-  name: git-fleet-example-01
+  name: gitea-fleet
 spec:
   selector:
     matchLabels:
-      fleet: git-fleet-example-01
+      fleet: gitea
   template:
     metadata:
       labels:
-        fleet: git-fleet-example-01
+        fleet: gitea-fleet
     spec:
       applications:
         - appType: quadlet
@@ -44,7 +44,7 @@ spec:
         - name: drone-tracker-web-content
           gitRef:
             path: /kiosk/content/flight-conditions-{{ .metadata.labels.weather }}
-            repository: git-fleet-example-01
+            repository: user-repo
             targetRevision: main
       os:
         image: quay.io/rh-ee-kamirsar/base-bootc:v1
